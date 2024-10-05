@@ -38,6 +38,7 @@ const loadPets = async () => {
     let data = await res.json();
     let pets = data.pets;
     displayPets(pets);
+    likedPets(pets);
 };
 
 loadPets();
@@ -111,6 +112,7 @@ const displayPets = (pets) => {
                 <!-- Navigate are -->
                 <div class="my-3 flex justify-between">
                     <div
+                        onclick="likedPets('${image}')"
                         class="text-xl border w-max py-2 px-4 rounded-lg cursor-pointer"
                     >
                         <i class="fa-regular fa-thumbs-up"></i>
@@ -149,4 +151,19 @@ const loadPetsByCategory = async (category) => {
     let data = await res.json();
     let pets = data.data;
     displayPets(pets);
+};
+
+const likedPets = (image) => {
+    let container = document.getElementById("liked-pets-container");
+    let liked = document.createElement("div");
+    liked.innerHTML = `
+        <div class="h-max">
+            <img
+                class="w-full rounded-lg"
+                src="${image}"
+                alt=""
+            />
+        </div>
+    `;
+    container.appendChild(liked);
 };
