@@ -60,6 +60,10 @@ const displayPets = (pets) => {
 
     for (pet of pets) {
         let name = pet.pet_name;
+        if (name == null || name == undefined) {
+            name = "Name not Found";
+        }
+
         let id = pet.petId;
 
         let breed = pet.breed;
@@ -75,6 +79,9 @@ const displayPets = (pets) => {
         }
 
         let gender = pet.gender;
+        if (gender == null || gender == undefined) {
+            gender = "Gender not found";
+        }
 
         let dob = pet.date_of_birth;
         if (dob == null || dob == undefined) {
@@ -125,9 +132,9 @@ const displayPets = (pets) => {
                 <div class="my-3 flex justify-between">
                     <div
                         onclick="likedPets('${image}')"
-                        class="text-xl border w-max py-2 px-4 rounded-lg cursor-pointer"
+                        class="btn text-xl border border-[#0d7a81] w-max py-2 px-4 rounded-lg cursor-pointer"
                     >
-                        <i class="fa-regular fa-thumbs-up"></i>
+                        <i class="text-[#0d7a81] fa-regular fa-thumbs-up"></i>
                     </div>
                     <div
                         class="text-xl w-max rounded-lg cursor-pointer"
@@ -225,13 +232,30 @@ const loadDetails = async (id) => {
 
 const showDetails = (pet) => {
     let name = pet.petData.pet_name;
+
     let breed = pet.petData.breed;
+    if (breed == null || breed == undefined) {
+        breed = "Breed not Found";
+    }
+
     let dob = pet.petData.date_of_birth;
+    if (dob == null || dob == undefined) {
+        dob = "DOB not Found";
+    }
 
     let gender = pet.petData.gender;
+    if (gender == null || gender == undefined) {
+        gender = "Gender not found";
+    }
+
     let image = pet.petData.image;
     let pet_details = pet.petData.pet_details;
+
     let price = pet.petData.price;
+    if (price == null || price == undefined) {
+        price = "Price not Found";
+    }
+
     let vaccinated_status = pet.petData.vaccinated_status;
 
     let container = document.getElementById("modal-main");
