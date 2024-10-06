@@ -32,13 +32,20 @@ const displayCategories = (categories) => {
 };
 
 const loadPets = async () => {
+    const spinner = document.getElementById("spinner");
+
+    spinner.classList.remove("hidden");
+
     const res = await fetch(
         `https://openapi.programming-hero.com/api/peddy/pets`
     );
     let data = await res.json();
     let pets = data.pets;
-    displayPets(pets);
-    sort(pets);
+    setTimeout(() => {
+        spinner.classList.add("hidden");
+        displayPets(pets);
+        sort(pets);
+    }, 2000);
 };
 
 loadPets();
@@ -95,7 +102,7 @@ const displayPets = (pets) => {
                 <!-- Image -->
                 <div>
                     <img
-                        class="w-full h-[150px] rounded-lg"
+                        class="w-full h-[200px] rounded-lg"
                         src="${image}"
                         alt=""
                     />

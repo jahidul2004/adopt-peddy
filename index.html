@@ -110,7 +110,11 @@
                         looking<br />at its layout. The point of using Lorem
                         Ipsum is that it has a.
                     </p>
-                    <a href="" class="btn bg-[#0d7a81] text-white">View More</a>
+                    <a
+                        href="#category-section"
+                        class="btn bg-[#0d7a81] text-white"
+                        >View More</a
+                    >
                 </div>
                 <!-- Banner data end -->
                 <!-- Banner image -->
@@ -124,7 +128,7 @@
         <!-- Header section end -->
 
         <!-- Category section start -->
-        <section>
+        <section id="category-section">
             <div class="w-[95%] md:container lg:container m-auto py-5">
                 <!-- Category info start -->
                 <div class="text-center mb-10">
@@ -174,8 +178,22 @@
                     <!-- Pets container -->
                     <div
                         id="pets-container"
-                        class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 w-full md:w-[70%] lg:w-[70%] border rounded-lg p-5 gap-5"
-                    ></div>
+                        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full md:w-[70%] lg:w-[70%] border rounded-lg p-5 gap-5"
+                    >
+                        <!-- Spinner -->
+                        <div
+                            class="col-span-3 flex items-center justify-center min-h-screen"
+                        >
+                            <div
+                                id="spinner"
+                                class="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-[#0d7a81] hidden"
+                            ></div>
+                        </div>
+
+                        <div id="pets-container" class="mt-4"></div>
+
+                        <!-- Spinner -->
+                    </div>
                     <!-- Pets container end -->
 
                     <!-- Liked pets start -->
@@ -194,7 +212,7 @@
         <!-- Footer section start -->
         <section class="bg-[#131313]">
             <footer
-                class="text-semi-white py-10 w-[95%] md:container lg:container m-auto flex gap-5 flex-col md:flex-row lg:flex-row justify-evenly"
+                class="text-semi-white py-10 w-[95%] md:container lg:container m-auto flex gap-5 flex-col md:flex-row lg:flex-row justify-between"
             >
                 <div>
                     <a class="text-white text-2xl"
@@ -247,43 +265,15 @@
         <!-- Footer section end -->
 
         <!-- Modal Section start -->
-        <button class="btn" onclick="my_modal_1.showModal()">open modal</button>
         <dialog id="my_modal_1" class="modal">
             <div class="modal-box flex flex-col">
-                <div id="modal-main">
-                    <div>
-                        <img class="w-full h-[250px]" src="images/pet.webp" alt="" />
-                    </div>
-                    <div>
-                        <h1 class="text-xl text-black font-bold my-2">
-                            ${name}
-                        </h1>
-                        <p>
-                            <i class="fa-solid fa-border-all"></i>
-                            Breed:${breed}
-                        </p>
-                        <p>
-                            <i class="fa-regular fa-calendar"></i>
-                            Birth:${dob}
-                        </p>
-                        <p>
-                            <i class="fa-solid fa-mercury"></i>
-                            Gender:${gender}
-                        </p>
-                        <p>
-                            <i class="fa-solid fa-dollar-sign"></i>
-                            Price:${price}$
-                        </p>
-                    </div>
-                    <div>
-                        <h1>Details Description</h1>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro corporis a illum voluptatibus expedita at!</p>
-                    </div>
-                </div>
+                <div id="modal-main"></div>
                 <div class="modal-action flex justify-center items-center">
                     <form method="dialog">
                         <!-- if there is a button in form, it will close the modal -->
-                        <button class="btn w-full bg-[#0d7a81] text-white">Close</button>
+                        <button class="btn w-full bg-[#0d7a81] text-white">
+                            Close
+                        </button>
                     </form>
                 </div>
             </div>
