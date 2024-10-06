@@ -38,7 +38,6 @@ const loadPets = async () => {
     let data = await res.json();
     let pets = data.pets;
     displayPets(pets);
-    likedPets(pets);
 };
 
 loadPets();
