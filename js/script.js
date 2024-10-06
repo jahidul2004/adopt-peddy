@@ -20,8 +20,9 @@ const displayCategories = (categories) => {
 
         categoryDiv.innerHTML = `
             <div
-                onclick="loadPetsByCategory('${name}')"
-                class="cursor-pointer py-3 px-5 border flex w-full justify-center items-center lg:w-max rounded-lg text-2xl lg:text-3xl font-bold gap-3"
+                id="${name}"
+                onclick="loadPetsByCategory('${name}');activeCategory('${name}');"
+                class="category-btn cursor-pointer py-3 px-5 border flex w-full justify-center items-center lg:w-max text-2xl lg:text-3xl font-bold gap-3"
             >
                 <img src="${icon}">
                 <h1>${name}</h1>
@@ -176,4 +177,24 @@ const likedPets = (image) => {
         </div>
     `;
     container.appendChild(liked);
+};
+
+const activeCategory = (id) => {
+    let categoryBtns = document.getElementsByClassName("category-btn");
+
+    for (let i = 0; i < categoryBtns.length; i++) {
+        categoryBtns[i].classList.remove("bg-semi-primary");
+        categoryBtns[i].classList.remove("rounded-full");
+        categoryBtns[i].classList.remove("border-2");
+        categoryBtns[i].classList.remove("border-[#0d7a81]");
+    }
+
+    let active = document.getElementById(id);
+    active.classList.remove("rounded-lg");
+    active.classList.add(
+        "bg-semi-primary",
+        "border-2",
+        "rounded-full",
+        "border-[#0d7a81]"
+    );
 };
