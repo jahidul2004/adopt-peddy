@@ -39,6 +39,7 @@ const loadPets = async () => {
     let data = await res.json();
     let pets = data.pets;
     displayPets(pets);
+    sort(pets);
 };
 
 loadPets();
@@ -197,4 +198,21 @@ const activeCategory = (id) => {
         "rounded-full",
         "border-[#0d7a81]"
     );
+};
+
+let sortedPets = [];
+const sort = (pets) => {
+    pets.sort((a, b) => {
+        if (a.price === null) return 1;
+        if (b.price === null) return -1;
+        return a.price - b.price;
+    });
+
+    console.log(pets);
+    sortedPets = pets;
+    console.log("Sorted Pets is:", sortedPets);
+};
+
+const sortPets = () => {
+    displayPets(sortedPets);
 };
