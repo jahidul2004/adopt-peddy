@@ -1,3 +1,4 @@
+//Load categories functionality start from here
 const loadCategories = async () => {
     const res = await fetch(
         "https://openapi.programming-hero.com/api/peddy/categories"
@@ -8,6 +9,8 @@ const loadCategories = async () => {
 };
 
 loadCategories();
+
+// Display categories functionality start from here
 
 const displayCategories = (categories) => {
     const categoriesContainer = document.getElementById("category-container");
@@ -31,6 +34,8 @@ const displayCategories = (categories) => {
     }
 };
 
+// Load pets functionality start from here
+
 const loadPets = async () => {
     const spinner = document.getElementById("spinner");
 
@@ -49,6 +54,8 @@ const loadPets = async () => {
 };
 
 loadPets();
+
+// Display pets functionality start from here
 
 const displayPets = (pets) => {
     let container = document.getElementById("pets-container");
@@ -147,6 +154,7 @@ const displayPets = (pets) => {
                         class="text-xl w-max rounded-lg cursor-pointer"
                     >
                         <button
+                            onclick="modal2()"
                             class="btn border text-[#0d7a81] border-[#0d7a81]"
                         >
                             Adopt
@@ -171,6 +179,8 @@ const displayPets = (pets) => {
     }
 };
 
+// Load pets by category functionality start from here
+
 const loadPetsByCategory = async (category) => {
     let res = await fetch(
         `https://openapi.programming-hero.com/api/peddy/category/${category}`
@@ -179,6 +189,8 @@ const loadPetsByCategory = async (category) => {
     let pets = data.data;
     displayPets(pets);
 };
+
+// Liked pets functionality start from here
 
 const likedPets = (image) => {
     let container = document.getElementById("liked-pets-container");
@@ -194,6 +206,8 @@ const likedPets = (image) => {
     `;
     container.appendChild(liked);
 };
+
+// Active category functionality start from here
 
 const activeCategory = (id) => {
     let categoryBtns = document.getElementsByClassName("category-btn");
@@ -215,6 +229,8 @@ const activeCategory = (id) => {
     );
 };
 
+// Sorting functionality start from here
+
 let sortedPets = [];
 const sort = (pets) => {
     pets.sort((a, b) => {
@@ -225,9 +241,13 @@ const sort = (pets) => {
     sortedPets = pets;
 };
 
+// Sorting functionality calling
+
 const sortPets = () => {
     displayPets(sortedPets);
 };
+
+// Load details functionality start from here
 
 const loadDetails = async (id) => {
     let res = await fetch(
@@ -237,6 +257,7 @@ const loadDetails = async (id) => {
     showDetails(data);
 };
 
+// Show details of a pet in a modal start from here
 const showDetails = (pet) => {
     let name = pet.petData.pet_name;
 
@@ -305,4 +326,29 @@ const showDetails = (pet) => {
     container.innerHTML = "";
     container.appendChild(data);
     my_modal_1.showModal();
+};
+
+//Countdown Timer Modal functionality start from here
+
+let count = 3;
+let intervalId;
+
+const modal2 = () => {
+    my_modal_2.showModal();
+
+    if (intervalId) {
+        clearInterval(intervalId);
+    }
+
+    intervalId = setInterval(() => {
+        document.getElementById("count-timer").innerHTML = count;
+        if (count === 0) {
+            my_modal_2.close();
+            clearInterval(intervalId);
+            count = 3;
+        }
+
+        count--;
+    }, 1000);
+    count = 3;
 };
