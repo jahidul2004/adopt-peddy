@@ -15,7 +15,6 @@ const displayCategories = (categories) => {
     for (category of categories) {
         let icon = category.category_icon;
         let name = category.category;
-        console.log("Category is:", name);
         const categoryDiv = document.createElement("div");
 
         categoryDiv.innerHTML = `
@@ -61,6 +60,7 @@ const displayPets = (pets) => {
 
     for (pet of pets) {
         let name = pet.pet_name;
+        let id = pet.petId;
 
         let breed = pet.breed;
         if (breed == null || breed == undefined) {
@@ -142,6 +142,7 @@ const displayPets = (pets) => {
                         class="text-xl w-max rounded-lg cursor-pointer"
                     >
                         <button
+                            onclick="loadDetails(${id})"
                             class="btn border text-[#0d7a81] border-[#0d7a81]"
                         >
                             Details
@@ -207,12 +208,70 @@ const sort = (pets) => {
         if (b.price === null) return -1;
         return a.price - b.price;
     });
-
-    console.log(pets);
     sortedPets = pets;
-    console.log("Sorted Pets is:", sortedPets);
 };
 
 const sortPets = () => {
     displayPets(sortedPets);
+};
+
+const loadDetails = async (id) => {
+    let res = await fetch(
+        `https://openapi.programming-hero.com/api/peddy/pet/${id}`
+    );
+    let data = await res.json();
+    showDetails(data);
+};
+
+const showDetails = (pet) => {
+    let name = pet.petData.pet_name;
+    let breed = pet.petData.breed;
+    let dob = pet.petData.date_of_birth;
+
+    let gender = pet.petData.gender;
+    let image = pet.petData.image;
+    let pet_details = pet.petData.pet_details;
+    let price = pet.petData.price;
+    let vaccinated_status = pet.petData.vaccinated_status;
+
+    let container = document.getElementById("modal-main");
+
+    let data = document.createElement("div");
+    data.innerHTML = `
+        <div>
+            <img class="rounded-lg w-full h-[250px]" src="${image}" alt="" />
+        </div>
+        <h1 class="text-xl text-black font-bold my-2">
+            ${name}
+        </h1>
+        <div class="grid grid-cols-2 my-2">
+            <p>
+                <i class="fa-solid fa-border-all"></i>
+                Breed:${breed}
+            </p>
+            <p>
+                <i class="fa-regular fa-calendar"></i>
+                Birth:${dob}
+            </p>
+            <p>
+                <i class="fa-solid fa-mercury"></i>
+                Gender:${gender}
+            </p>
+            <p>
+                <i class="fa-solid fa-dollar-sign"></i>
+                Price:${price}$
+            </p>
+            <p>
+                <i class="fa-solid fa-virus"></i>
+                Vaccination Status:${vaccinated_status}
+            </p>
+        </div>
+        <div>
+            <h1 class="text-xl font-bold">Details Description</h1>
+            <p class="text-semi-black font-semibold">${pet_details}</p>
+        </div>
+    `;
+    container.innerHTML = "";
+    container.appendChild(data);
+    my_modal_1.showModal();
 };
