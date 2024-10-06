@@ -46,6 +46,17 @@ const displayPets = (pets) => {
     let container = document.getElementById("pets-container");
     container.innerHTML = "";
 
+    if (pets.length == 0) {
+        container.innerHTML = `
+            <div class="col-span-1 md:col-span-3 gap-3 lg:col-span-3 text-center flex flex-col items-center justify-center">
+                <img src="images/error.webp">
+                <h1 class="text-3xl font-bold">No Information Available</h1>
+                <p class="text-semi-black font-semibold">It is a long established fact that a reader will be distracted by the readable content of a page when looking at 
+                its layout. The point of using Lorem Ipsum is that it has a.</p>
+            </div>
+        `;
+    }
+
     for (pet of pets) {
         let name = pet.pet_name;
 
