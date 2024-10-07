@@ -148,7 +148,7 @@
                 <!-- Category container start -->
                 <div
                     id="category-container"
-                    class="flex flex-col gap-3 items-center md:flex-row lg:flex-row justify-between"
+                    class="grid grid-cols-2 lg:grid-cols-4 md:grid-cols-4 gap-3"
                 ></div>
                 <!-- Category container end -->
             </div>
@@ -190,8 +190,6 @@
                             ></div>
                         </div>
 
-                        <div id="pets-container" class="mt-4"></div>
-
                         <!-- Spinner -->
                     </div>
                     <!-- Pets container end -->
@@ -201,20 +199,11 @@
                         id="liked-pets-container"
                         class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 md:w-[30%] lg:w-[30%] border rounded-lg p-5 gap-3 h-max"
                     >
-                        <div class="h-max">
-                            <img
-                                class="w-full rounded-lg"
-                                src="https://i.ibb.co.com/p0w744T/pet-1.jpg"
-                                alt=""
-                            />
-                        </div>
-                        <div class="h-max">
-                            <img
-                                class="w-full rounded-lg"
-                                src="https://i.ibb.co.com/s3PXSwD/pet-3.jpg"
-                                alt=""
-                            />
-                        </div>
+                        <h1
+                            class="col-span-1 md:col-span-2 lg:col-span-2 text-3xl font-bold py-3"
+                        >
+                            Liked Pets❤️
+                        </h1>
                     </div>
                     <!-- Liked pets end -->
                 </div>
@@ -285,7 +274,6 @@
                 <div id="modal-main"></div>
                 <div class="modal-action flex justify-center items-center">
                     <form method="dialog">
-                        <!-- if there is a button in form, it will close the modal -->
                         <button class="btn w-full bg-[#0d7a81] text-white">
                             Close
                         </button>
@@ -296,7 +284,6 @@
         <!-- Modal section end -->
 
         <!-- Modal 2 start -->
-        <button class="btn" onclick="my_modal_2.showModal()">open modal</button>
         <dialog id="my_modal_2" class="modal">
             <div class="modal-box">
                 <div class="flex gap-3 flex-col items-center">

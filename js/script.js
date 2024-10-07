@@ -23,8 +23,8 @@ const displayCategories = (categories) => {
         categoryDiv.innerHTML = `
             <div
                 id="${name}"
-                onclick="loadPetsByCategory('${name}');activeCategory('${name}');"
-                class="category-btn cursor-pointer py-3 px-5 border flex w-full justify-center items-center lg:w-max text-2xl lg:text-3xl font-bold gap-3"
+                onclick="loadPetsByCategory('${name}');activeCategory('${name}')"
+                class="category-btn cursor-pointer py-3 px-5 border flex justify-center items-center text-2xl lg:text-3xl font-bold gap-3"
             >
                 <img src="${icon}">
                 <h1>${name}</h1>
@@ -37,20 +37,13 @@ const displayCategories = (categories) => {
 // Load pets functionality start from here
 
 const loadPets = async () => {
-    const spinner = document.getElementById("spinner");
-
-    spinner.classList.remove("hidden");
-
     const res = await fetch(
         `https://openapi.programming-hero.com/api/peddy/pets`
     );
     let data = await res.json();
     let pets = data.pets;
-    setTimeout(() => {
-        spinner.classList.add("hidden");
-        displayPets(pets);
-        sort(pets);
-    }, 2000);
+    displayPets(pets);
+    sort(pets);
 };
 
 loadPets();
@@ -195,6 +188,7 @@ const loadPetsByCategory = async (category) => {
 const likedPets = (image) => {
     let container = document.getElementById("liked-pets-container");
     let liked = document.createElement("div");
+    liked.classList.add("md:col-span-2", "lg:col-span-1");
     liked.innerHTML = `
         <div class="h-max">
             <img
