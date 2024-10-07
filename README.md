@@ -27,5 +27,5 @@
 </div>
 <div>
   <h2>Live Link</h2>
-  <a href="google.com">test.test.com</a>
+  <a href="https://adoptpeddy.netlify.app/" target="_blank">https://adoptpeddy.netlify.app/</a>
 </div>
