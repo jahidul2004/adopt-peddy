@@ -23,7 +23,7 @@ const displayCategories = (categories) => {
         categoryDiv.innerHTML = `
             <div
                 id="${name}"
-                onclick="loadPetsByCategory('${name}');activeCategory('${name}')"
+                onclick="loadPetsByCategory('${name}');activeCategory('${name}');spinner()"
                 class="category-btn cursor-pointer py-3 px-5 border flex justify-center items-center text-2xl lg:text-3xl font-bold gap-3"
             >
                 <img src="${icon}">
@@ -42,6 +42,7 @@ const loadPets = async () => {
     );
     let data = await res.json();
     let pets = data.pets;
+    spinner();
     displayPets(pets);
     sort(pets);
 };
@@ -147,7 +148,8 @@ const displayPets = (pets) => {
                         class="text-xl w-max rounded-lg cursor-pointer"
                     >
                         <button
-                            onclick="modal2()"
+                            id="${name}"
+                            onclick="modal2(${name})"
                             class="btn border text-[#0d7a81] border-[#0d7a81]"
                         >
                             Adopt
@@ -312,7 +314,7 @@ const showDetails = (pet) => {
                 Vaccination Status:${vaccinated_status}
             </p>
         </div>
-        <div>
+        <div class="border-t-2 py-2">
             <h1 class="text-xl font-bold">Details Description</h1>
             <p class="text-semi-black font-semibold">${pet_details}</p>
         </div>
@@ -327,7 +329,7 @@ const showDetails = (pet) => {
 let count = 3;
 let intervalId;
 
-const modal2 = () => {
+const modal2 = (id) => {
     my_modal_2.showModal();
 
     if (intervalId) {
@@ -345,4 +347,20 @@ const modal2 = () => {
         count--;
     }, 1000);
     count = 3;
+
+    let btn = id;
+    btn.innerText = "Adopted";
+};
+
+const spinner = () => {
+    let spins = document.getElementById("spinner");
+    let petsMain = document.getElementById("pets-container-main");
+    spins.classList.remove("hidden");
+    spins.classList.add("flex");
+    petsMain.classList.add("hidden");
+
+    setTimeout(() => {
+        spins.classList.add("hidden");
+        petsMain.classList.remove("hidden");
+    }, 2000);
 };
