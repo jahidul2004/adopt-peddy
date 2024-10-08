@@ -232,7 +232,7 @@ const sort = (pets) => {
     pets.sort((a, b) => {
         if (a.price === null) return 1;
         if (b.price === null) return -1;
-        return a.price - b.price;
+        return b.price - a.price;
     });
     sortedPets = pets;
 };
