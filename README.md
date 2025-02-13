@@ -1,3 +1,6 @@
+![Adopt Peddy](https://i.ibb.co.com/HTdV5tVd/Screenshot-62.png)
+
+
 <h1>😺Peddy - Pet Adoption Platform</h1>
 <div>
   <h2>Project description</h2>
